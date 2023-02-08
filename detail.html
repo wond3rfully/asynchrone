@@ -13,8 +13,42 @@
         const splitted = idSearch.split("=")
         //console.log(splitted)
         const idFound = splitted[1]
-        console.log(idFound)
-  
+        //console.log(idFound)
+        const detailPage = "https://pokeapi.co/api/v2/pokemon" + "/" +idFound + "/"
+        console.log(detailPage)
+        
+        fetch(detailPage).then(data => {
+            return data.json();
+        }).then(data => {
+            console.log(data)
+
+            const $container = document.createElement('div')
+            document.body.append($container)
+
+            const getImage = data.sprites.front_default
+            const $image = document.createElement('img')
+            $container.append($image)
+            $image.src = getImage
+
+            const getName = data.name
+            console.log(getName)
+            const $h1 = document.createElement('h1')
+            $container.append($h1)
+            $h1.textContent = getName
+
+            const getAbilities = data.abilities
+            for(var i=0; i<getAbilities.length; i++){
+                const abilityName = getAbilities[i].ability.name
+                const $showName = document.createElement('ul')
+                $container.append($showName)
+                $showName.textContent = abilityName
+            }
+            
+        })
+
+
+
+
       </script>
 </body>
 </html>
