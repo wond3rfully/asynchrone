@@ -1,0 +1,34 @@
+/* body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px black solid;
+    padding: 40px;
+    border-radius: 10%;
+    width: fit-content;
+    height: fit-content;
+}
+
+img{
+    object-fit: cover;
+    align-self: center;
+}
+
+h1, p{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+ul{
+    font-size: 15px;
+    align-self: center;
+    padding-inline-start: 0px;
+}
