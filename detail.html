@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="detail.css">
     <title>Detail</title>
 </head>
 <body>
@@ -34,7 +35,11 @@
             console.log(getName)
             const $h1 = document.createElement('h1')
             $container.append($h1)
-            $h1.textContent = getName
+            $h1.textContent = "Name : " + getName
+
+            const $title = document.createElement('p')
+            $container.append($title)
+            $title.textContent = "Abilities : "
 
             const getAbilities = data.abilities
             for(var i=0; i<getAbilities.length; i++){
