@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="detail.css">
     <title>Detail</title>
 </head>
+
 <body>
     <script>
 
@@ -15,45 +17,95 @@
         //console.log(splitted)
         const idFound = splitted[1]
         //console.log(idFound)
-        const detailPage = "https://pokeapi.co/api/v2/pokemon" + "/" +idFound + "/"
+        const detailPage = "https://pokeapi.co/api/v2/pokemon" + "/" + idFound + "/"
         console.log(detailPage)
-        
-        fetch(detailPage).then(data => {
+
+        function idCard(url) {
+
+            fetch(url).then(data => {
+                return data.json();
+            }).then(data => {
+                console.log(data)
+
+                const $container = document.createElement('div')
+                document.body.append($container)
+                $container.classList.add('card')
+
+                const getImage = data.sprites.front_default
+                const $image = document.createElement('img')
+                $container.append($image)
+                $image.src = getImage
+
+                const getName = data.name
+                console.log(getName)
+                const $h1 = document.createElement('h1')
+                $container.append($h1)
+                $h1.textContent = "Name : " + getName
+
+                const $title = document.createElement('p')
+                $container.append($title)
+                $title.textContent = "Abilities : "
+
+                const getAbilities = data.abilities
+                for (var i = 0; i < getAbilities.length; i++) {
+                    const abilityName = getAbilities[i].ability.name
+                    const $showName = document.createElement('ul')
+                    $container.append($showName)
+                    $showName.textContent = abilityName
+                }
+
+            })
+
+        }
+
+        idCard(detailPage)
+
+        const $gallery = document.createElement('div')
+        document.body.append($gallery)
+        $gallery.classList.add('gallery')
+
+        // Returns a random integer from 1 to 10:
+        //Math.floor(Math.random() * 10) + 1;
+
+        //use push
+
+        //limit array length
+        //arr.length = 5
+
+        const suggestions = []
+
+
+        fetch("https://pokeapi.co/api/v2/pokemon").then(data => {
             return data.json();
         }).then(data => {
-            console.log(data)
 
-            const $container = document.createElement('div')
-            document.body.append($container)
-
-            const getImage = data.sprites.front_default
-            const $image = document.createElement('img')
-            $container.append($image)
-            $image.src = getImage
-
-            const getName = data.name
-            console.log(getName)
-            const $h1 = document.createElement('h1')
-            $container.append($h1)
-            $h1.textContent = "Name : " + getName
-
-            const $title = document.createElement('p')
-            $container.append($title)
-            $title.textContent = "Abilities : "
-
-            const getAbilities = data.abilities
-            for(var i=0; i<getAbilities.length; i++){
-                const abilityName = getAbilities[i].ability.name
-                const $showName = document.createElement('ul')
-                $container.append($showName)
-                $showName.textContent = abilityName
+            function chooseRandom() {
+                for (var i = 0; i <= 5; i++) {
+                    var randomId = 0;
+                    var loopEnd = Math.floor(Math.random() * data.results.length + 1);
+                    for (var j = 0; j < loopEnd; j++) {
+                        randomId++;
+                    }
+                    console.log(randomId);
+                }
             }
-            
+
+            chooseRandom()
+
+            function numberArr (){
+                var newNumber = chooseRandom()
+
+                
+            }
         })
 
 
 
 
-      </script>
+
+
+
+    </script>
 </body>
+
 </html>
