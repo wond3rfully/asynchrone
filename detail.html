@@ -80,7 +80,7 @@
         }).then(data => {
 
             function chooseRandom() {
-                for (var i = 0; i <= 5; i++) {
+                for (var i = 0; i <= 4; i++) {
                     var randomId = 0;
                     var loopEnd = Math.floor(Math.random() * data.results.length + 1);
                     for (var j = 0; j < loopEnd; j++) {
@@ -92,10 +92,11 @@
 
             chooseRandom()
 
+            //delete existing numbers????
             function numberArr (){
                 var newNumber = chooseRandom()
 
-                
+
             }
         })
 
