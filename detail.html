@@ -78,7 +78,7 @@
         fetch("https://pokeapi.co/api/v2/pokemon").then(data => {
             return data.json();
         }).then(data => {
-
+/* 
             function chooseRandom() {
                 for (var i = 0; i <= 4; i++) {
                     var randomId = 0;
@@ -93,11 +93,20 @@
             chooseRandom()
 
             //delete existing numbers????
-            function numberArr (){
+            function numberArr() {
                 var newNumber = chooseRandom()
 
 
             }
+ */
+
+            const items = data.results
+            function randomId(list){
+                return[...list].sort(()=> Math.random() > 0.5 ? 1 : -1).slice(0, 5)
+
+            }
+
+            console.log(randomId(items))
         })
 
 
