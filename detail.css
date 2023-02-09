@@ -1,9 +1,9 @@
-/* body{
-    height: 100vh;
+body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-} */
+} 
 
 .card{
     display: flex;
@@ -32,3 +32,17 @@ ul{
     align-self: center;
     padding-inline-start: 0px;
 }
+
+.gallery{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery > div{
+    transform: scale(0.7);
+    margin: -10px;
+}
+

@@ -20,6 +20,7 @@
         const detailPage = "https://pokeapi.co/api/v2/pokemon" + "/" + idFound + "/"
         console.log(detailPage)
 
+
         function idCard(url) {
 
             fetch(url).then(data => {
@@ -28,7 +29,7 @@
                 console.log(data)
 
                 const $container = document.createElement('div')
-                document.body.append($container)
+                document.body.prepend($container)
                 $container.classList.add('card')
 
                 const getImage = data.sprites.front_default
@@ -72,47 +73,62 @@
         //limit array length
         //arr.length = 5
 
-        const suggestions = []
-
 
         fetch("https://pokeapi.co/api/v2/pokemon").then(data => {
             return data.json();
         }).then(data => {
-/* 
-            function chooseRandom() {
-                for (var i = 0; i <= 4; i++) {
-                    var randomId = 0;
-                    var loopEnd = Math.floor(Math.random() * data.results.length + 1);
-                    for (var j = 0; j < loopEnd; j++) {
-                        randomId++;
-                    }
-                    console.log(randomId);
-                }
-            }
-
-            chooseRandom()
-
-            //delete existing numbers????
-            function numberArr() {
-                var newNumber = chooseRandom()
-
-
-            }
- */
 
             const items = data.results
-            function randomId(list){
-                return[...list].sort(()=> Math.random() > 0.5 ? 1 : -1).slice(0, 5)
+            function randomId(list) {
+                return [...list].sort(() => Math.random() > 0.5 ? 1 : -1).slice(0, 5)
 
             }
 
-            console.log(randomId(items))
+            const randomItems = randomId(items)
 
-            for (var i = 0; i <= 4; i++){
-                const getUrl = data.results[i].url
+            for (var i = 0; i <= 4; i++) {
+                const getUrl = randomItems[i].url
                 console.log(getUrl)
 
-                idCard(getUrl)
+                const $galleryCards = idCard(getUrl)
+
+                function idCard(getUrl) {
+
+                    fetch(getUrl).then(data => {
+                        return data.json();
+                    }).then(data => {
+                        console.log(data)
+
+                        const $container = document.createElement('div')
+                        $gallery.append($container)
+                        $container.classList.add('card')
+
+                        const getImage = data.sprites.front_default
+                        const $image = document.createElement('img')
+                        $container.append($image)
+                        $image.src = getImage
+
+                        const getName = data.name
+                        console.log(getName)
+                        const $h1 = document.createElement('h1')
+                        $container.append($h1)
+                        $h1.textContent = "Name : " + getName
+
+                        const $title = document.createElement('p')
+                        $container.append($title)
+                        $title.textContent = "Abilities : "
+
+                        const getAbilities = data.abilities
+                        for (var i = 0; i < getAbilities.length; i++) {
+                            const abilityName = getAbilities[i].ability.name
+                            const $showName = document.createElement('ul')
+                            $container.append($showName)
+                            $showName.textContent = abilityName
+                        }
+
+                    })
+
+                }
             }
 
         })
