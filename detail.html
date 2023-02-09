@@ -107,7 +107,16 @@
             }
 
             console.log(randomId(items))
+
+            for (var i = 0; i <= 4; i++){
+                const getUrl = data.results[i].url
+                console.log(getUrl)
+
+                idCard(getUrl)
+            }
+
         })
+
 
 
 
