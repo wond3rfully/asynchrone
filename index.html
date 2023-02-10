@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-    
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Method</title>
+</head>
+
+<body><!-- 
+    other Methods : CRUD (create read update delete)
+  GET (create) / POST (read) / PUT & PATCH (update) / DELETE 
+
+npx json-server --watch data/db.json
+-->
+
+<input type="text" id="input" name="Name">
+  <div id="app"></div>
+  <script type="module" src="/main.js"></script>
+  <script>
+
+const data = {
+  
+    firstname : "Ohm",
+    lastname : "Suteepat",
+    age : 25,
+    role : "frontend dev"
+  
+}
+
+    function postData() {
+      console.log("show")
+      fetch('http://localhost:3000/users', { //OPTION OBEJCT 
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data), //transform javascript objet to json object OPPPOSITE TO JSON.parse
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+    }
+
+    postData()
+
+    //add eventlistener input
+    const input = document.querySelector('#input')
+    input.addEventListener('input', () => {
+    const name = event.target.value
+      console.log(name)
+    })
+
+  </script>
+</body>
+
 </html>

@@ -22,6 +22,8 @@
             return data.json();
         }).then(data => {
 
+            console.log(data)
+
             for (var i = 0; i < data.results.length; i++) {
                 const $div = document.createElement("div");
                 document.body.append($div)
